@@ -1,0 +1,21 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="MCU" CircId="mega8-1" mainComp="false" Show_id="true" Show_Val="false" Pos="-292,-168" rotation="0" hflip="1" vflip="1" label="mega8-1" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="1 MHz" Program="sound.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" varList="PORTB" MainMcu="true" SerialMon="-1" />
+
+<item itemtype="Oscope" CircId="Oscope-2" mainComp="false" Show_id="false" Show_Val="false" Pos="-512,56" rotation="0" hflip="1" vflip="1" label="Oscope-2" idLabPos="-90,-100" labelrot="0" valLabPos="-16,20" valLabRot="0" Basic_X="135 _px" Basic_Y="135 _px" BufferSize="600000" connectGnd="true" InputImped="10 MΩ" TimDiv="454521528" TimPos="-1571544558,-1428455164571,-1428455164571,-1428455164571," VolDiv="0.759193,1.08648,1.08648,1.08648," Tunnels=",,,," Trigger="4" Filter="0.1 V" AutoSC="4" Tracks="1" HideCh="false,false,false,false," VolPos="0.342751,-2.70731,-2.70731,-2.70731," />
+
+<item itemtype="Ground" CircId="Ground-4" mainComp="false" Show_id="false" Show_Val="false" Pos="-172,32" rotation="0" hflip="1" vflip="1" label="Ground-4" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="AudioOut" CircId="AudioOut-3" mainComp="false" Show_id="false" Show_Val="false" Pos="-152,-32" rotation="0" hflip="1" vflip="1" label="AudioOut-3" idLabPos="-20,-36" labelrot="0" valLabPos="-16,20" valLabRot="0" Buzzer="false" Impedance="8 Ω" Frequency="1 kHz" />
+
+<item itemtype="Node" CircId="Node-22" mainComp="false" Pos="-332,-40" />
+
+<item itemtype="Connector" uid="Connector-5" startpinid="Ground-4-Gnd" endpinid="AudioOut-3-rPin" pointList="-172,16,-172,-32,-168,-32" />
+
+<item itemtype="Connector" uid="Connector-73" startpinid="Node-22-1" endpinid="Oscope-2-Pin0" pointList="-332,-40,-616,-40,-616,8,-600,8" />
+
+<item itemtype="Connector" uid="Connector-74" startpinid="mega8-1-PORTB0" endpinid="Node-22-0" pointList="-300,-56,-332,-56,-332,-40" />
+
+<item itemtype="Connector" uid="Connector-75" startpinid="Node-22-2" endpinid="AudioOut-3-lPin" pointList="-332,-40,-168,-40" />
+
+</circuit>
