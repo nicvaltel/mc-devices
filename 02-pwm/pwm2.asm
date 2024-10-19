@@ -34,9 +34,9 @@ pulse:
 	;; starts with zero level 
 
 	pulse_zero_level:
-	dec r21 ;; 1
 	cpse r21, r16 ;; 3 -- always 3 clocks because of rjmp takes 2 clocks
 	rjmp pulse_zero_level ;; clocks in previous line
+	dec r21 ;; 1
 
 	out portc, r17 ;; 1
 	pulse_one_level:

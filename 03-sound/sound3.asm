@@ -11,7 +11,7 @@
 
 	clr r16
 	ser r17
-	ldi r31, 20
+	ldi r31, 99
 	out ddrc, r17
 	
 loop:
@@ -23,8 +23,8 @@ loop:
 
 pulse:
 	;; ---- input ---
-	;; r21 >= 1 as zero-level length minus 1: t0 = 4*(r21 + 1)
-	;; r22 >= 1 as one-level length minus 1: t1  = 4*(r22 + 1)
+	;; r21 >= 1 as zero-level length minus 1: t0 = 40*(r21 + 1)
+	;; r22 >= 1 as one-level length minus 1: t1  = 40*(r22 + 1)
 	;; ---- preliminarily ----
 	;; ddrc shoud be set to 0xff
 	;; r16 shoud = 0x00
@@ -35,6 +35,42 @@ pulse:
 
 	
 	pulse_zero_level:
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
 	dec r21 ;; 1
 	cpse r21, r16 ;; 3 -- always 3 clocks because of rjmp takes 2 clocks
 	rjmp pulse_zero_level ;; clocks in previous line
@@ -42,6 +78,42 @@ pulse:
 
 	out portc, r17 ;; 1
 	pulse_one_level:
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
 	dec r22 ;; 1
 	cpse r22, r16 ;; 3
 	rjmp pulse_one_level ;; clocks in previous line
