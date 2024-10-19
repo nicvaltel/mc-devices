@@ -3,10 +3,11 @@
 	.include "m8def.inc"
 
 ;---- Сегмент данных
-        .dseg
+	.dseg
+
 ;---- Сегмент кода
-        .cseg
-        .org 0x0000
+	.cseg
+	.org 0x0000
 
 	clr r16
 	ldi r17,0xff
@@ -19,4 +20,4 @@ loop:
 	rjmp loop
 
 ;---- Сегмент EEPROM
-        .eseg
+	.eseg
