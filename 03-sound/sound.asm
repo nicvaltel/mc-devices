@@ -11,10 +11,16 @@
 
 	clr r16
 	ser r17
-	ldi r31, 10
+	ldi r31, 1
 	out ddrc, r17
+	out ddrb, r16
+	in r25, pinb
 	
 loop:
+	in r26, pinb
+	eor r26, r25
+	brne key_pressed 
+
 	mov r21, r31 ;; 1
   out portc, r16 ;; 1
 	mov r22, r31 ;; 1
@@ -59,6 +65,16 @@ pulse:
 
 	rjmp loop ;; 2
 	;; 1 + (37 + 3)*n - 1 + 2 + [y] = [2] + 40n + 2
+
+key_pressed:
+	eor r25, r26
+	ldi r18, 1000 ;; 1 + 1 + 12*3 - 1 = 37
+	key_pressed_delay:
+	dec r18 ;; 1
+	brne key_pressed_delay ;; 2/1
+	;; add r31,r31
+	rol r31
+	rjmp loop
 
 ;---- EEPROM Segment
 	.eseg
