@@ -1,0 +1,9 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="MCU" CircId="mega8-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-272,-164" rotation="0" hflip="1" vflip="1" label="mega8-2" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="1 Hz" Program="pg-branch.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" varList="R18,R19" MainMcu="true" SerialMon="-1" />
+
+<item itemtype="Oscope" CircId="Oscope-3" mainComp="false" Show_id="false" Show_Val="false" Pos="-76,-112" rotation="0" hflip="1" vflip="1" label="Oscope-3" idLabPos="-90,-100" labelrot="0" valLabPos="-16,20" valLabRot="0" Basic_X="135 _px" Basic_Y="135 _px" BufferSize="600000" connectGnd="true" InputImped="10 MΩ" TimDiv="3361260156538" TimPos="37756278773090,37756278773090,-778312214941,37756278773090," VolDiv="1,1,1,1," Tunnels=",,,," Trigger="4" Filter="0.1 V" AutoSC="2" Tracks="1" HideCh="false,false,false,false," VolPos="0,0,0,0," />
+
+<item itemtype="Connector" uid="Connector-1" startpinid="mega8-2-PORTB0" endpinid="Oscope-3-Pin2" pointList="-280,-52,-280,-32,-180,-32,-180,-96,-164,-96" />
+
+</circuit>
