@@ -1,0 +1,20 @@
+
+Compilers:
+sudo apt-get install avra
+sudo apt install gdb-avr
+sudo apt-get install gcc-avr binutils-avr avr-libc gdb-avr avrdude
+
+Simulator:
+a) sudo apt-get install simavr
+b) (more popular) sudo apt-get install simulavr
+
+https://habr.com/ru/articles/373677/
+A)
+avr-as -mmcu=atmega16 -o test.o test.S
+avr-objcopy -O ihex test.o test.hex
+
+
+B)
+avr-as -mmcu=atmega16 -g --gstabs -o test.o test.S
+avr-ld -m avr4 -o test.elf test.o
+avr-objcopy -j .text -j .data -O ihex test.elf test.hex
