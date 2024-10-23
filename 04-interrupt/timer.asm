@@ -5,6 +5,7 @@
 
     .equ HALF_PERIOD = 0x0100
     .equ PREV_KEY_STATE = 0x0101
+    .equ BUTTON_PIN = 32 ; 0b00100000
 
 ;---- Code Segment
 .cseg
@@ -28,11 +29,11 @@ RESET:
 
     ; save state of pressed key
     in r16, pinb
-    ldi r17, 32 ; 0b00100000
-    and r16, r17 ; only PB5 left
+    ldi r17, BUTTON_PIN
+    and r16, r17 ; only BUTTON_PIN left
     ldi r27, high(PREV_KEY_STATE) ; X = R27:R26
     ldi r26, low(PREV_KEY_STATE)
-    st X, r16 ; save state of PB5
+    st X, r16 ; save state of BUTTON_PIN
 
 
     ; set PB0 as output
@@ -77,8 +78,8 @@ RESET:
 MAIN:
     ; read PB5 state
     in r16, pinb
-    ldi r17, 32 ; 0b00100000
-    and r16, r17 ; only PB5 left
+    ldi r17, BUTTON_PIN ; 0b00100000
+    and r16, r17 ; only BUTTON_PIN left
 
     ; load prev state of PB5
     ldi r27, high(PREV_KEY_STATE) ; X = R27:R26
@@ -86,10 +87,8 @@ MAIN:
     ld r17, X
 
     ; compare new state of PB5 with old one
-    ; cli ; disable global interrupts
     sub r16, r17
     brne KEY_PRESSED
-    ; sei ; Enable global interrupts
 
     rjmp MAIN
 
@@ -115,10 +114,8 @@ TIM0_OVF_ISR:
     ; count not from 0, but from 255 - HALF_PERIOD
     ser r17
     sub r17, r16
-    mov r22, r17 ;; temp to delete - for debug
     inc r17 ;; this increment fix bug with last digit at coping to TCNT0
     out TCNT0, r17
-    in r21, TCNT0 ;; temp to delete - for debug
 
     pop r16
     out SREG, r16
@@ -130,6 +127,17 @@ TIM0_OVF_ISR:
 
 
 KEY_PRESSED:
+
+    ; 10ms delay for bouncing
+    ldi r17, 40
+    KEY_PRESSED_DELAY_LOOP:
+    ser r16
+    KEY_PRESSED_DELAY_SUBLOOP:
+    dec r16
+    brne KEY_PRESSED_DELAY_SUBLOOP
+    dec r17
+    brne KEY_PRESSED_DELAY_LOOP
+
     ; Increment period time
     ldi r27, high(HALF_PERIOD) ; X = R27:R26
     ldi r26, low(HALF_PERIOD)
