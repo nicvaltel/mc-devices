@@ -126,17 +126,32 @@ TIM0_OVF_ISR:
     reti
 
 
+DELAY:
+    ; input r16; 
+    ; output r16 = 0
+    ; delay = r16*100cycles + 4cycles (for 1MHz delay = r16*0.1ms + 4us) (4cs for return, and don't forget +3cs for rcall)
+
+    ; r16 = n; r17 = m
+    ; cycles = (1 + 4m - 1)n + 4n - 1 = 4mn + 4n - 1 = 4n(m+1) - 1
+    DELAY_LOOP:
+    ldi r17, 24 ; cycles = 4*r16*(24+1) = 100*r16 
+    DELAY_SUBLOOP:
+    nop
+    dec r17
+    brne DELAY_SUBLOOP
+    nop
+    dec r16
+    brne DELAY_LOOP
+    
+    clr r16 ;1cs
+    ret ; 4cs
+
+
 KEY_PRESSED:
 
     ; 10ms delay for bouncing
-    ldi r17, 40
-    KEY_PRESSED_DELAY_LOOP:
-    ser r16
-    KEY_PRESSED_DELAY_SUBLOOP:
-    dec r16
-    brne KEY_PRESSED_DELAY_SUBLOOP
-    dec r17
-    brne KEY_PRESSED_DELAY_LOOP
+    ldi r16, 100
+    rcall DELAY
 
     ; Increment period time
     ldi r27, high(HALF_PERIOD) ; X = R27:R26
