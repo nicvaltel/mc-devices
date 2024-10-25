@@ -1,7 +1,5 @@
 <circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
 
-<item itemtype="MCU" CircId="mega16-3" mainComp="false" Show_id="true" Show_Val="false" Pos="-192,-108" rotation="0" hflip="1" vflip="1" label="mega16-3" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="1 MHz" Program="pwm.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Wdt_enabled="false" varList=",,,,,,,,,,,PORTB" MainMcu="true" SerialMon="-1" />
-
 <item itemtype="Ground" CircId="Ground-4" mainComp="false" Show_id="false" Show_Val="false" Pos="-260,92" rotation="0" hflip="1" vflip="1" label="Ground-4" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
 <item itemtype="Battery" CircId="Battery-5" mainComp="false" Show_id="false" Show_Val="false" Pos="-340,-112" rotation="90" hflip="1" vflip="1" label="Battery-5" idLabPos="-18,-22" labelrot="0" valLabPos="-10,10" valLabRot="0" Voltage="5 V" Resistance="1 mΩ" />
@@ -12,46 +10,48 @@
 
 <item itemtype="Push" CircId="Push-8" mainComp="false" Show_id="false" Show_Val="false" Pos="-260,-4" rotation="90" hflip="1" vflip="1" label="Push-8" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
 
-<item itemtype="Oscope" CircId="Oscope-13" mainComp="false" Show_id="false" Show_Val="false" Pos="44,-36" rotation="0" hflip="1" vflip="1" label="Oscope-13" idLabPos="-90,-100" labelrot="0" valLabPos="-16,20" valLabRot="0" Basic_X="135 _px" Basic_Y="135 _px" BufferSize="600000" connectGnd="true" InputImped="10 MΩ" TimDiv="52428800000" TimPos="0,310833338559,310833338559,310833338559," VolDiv="0.437802,1.44938,1.44938,1.44938," Tunnels=",,,," Trigger="4" Filter="0.1 V" AutoSC="4" Tracks="1" HideCh="false,false,false,false," VolPos="-2.24516,0,0,0," />
+<item itemtype="Oscope" CircId="Oscope-13" mainComp="false" Show_id="false" Show_Val="false" Pos="40,-36" rotation="0" hflip="1" vflip="1" label="Oscope-13" idLabPos="-90,-100" labelrot="0" valLabPos="-16,20" valLabRot="0" Basic_X="135 _px" Basic_Y="135 _px" BufferSize="600000" connectGnd="true" InputImped="10 MΩ" TimDiv="51200000" TimPos="843891,-4510053483,-4510053483,0," VolDiv="0.574512,0.574512,0.574512,0.0100274," Tunnels=",,,," Trigger="3" Filter="0.1 V" AutoSC="3" Tracks="1" HideCh="false,false,false,false," VolPos="-2.08024,-2.08024,-2.08024,-2.87069," />
 
-<item itemtype="Capacitor" CircId="Capacitor-18" mainComp="false" ShowProp="Capacitance" Show_id="false" Show_Val="true" Pos="-228,44" rotation="90" hflip="1" vflip="1" label="Capacitor-18" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Capacitance="10 mF" Resistance="1 µΩ" InitVolt="0 V" ReaStep="0 ns" />
+<item itemtype="Capacitor" CircId="Capacitor-18" mainComp="false" ShowProp="Capacitance" Show_id="false" Show_Val="true" Pos="-228,44" rotation="90" hflip="1" vflip="1" label="Capacitor-18" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Capacitance="3 µF" Resistance="1 µΩ" InitVolt="0 V" ReaStep="0 ns" />
 
-<item itemtype="Resistor" CircId="Resistor-20" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-228,-8" rotation="270" hflip="1" vflip="1" label="Resistor-20" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="250 Ω" />
+<item itemtype="Resistor" CircId="Resistor-20" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-228,-8" rotation="270" hflip="1" vflip="1" label="Resistor-20" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="1 kΩ" />
 
-<item itemtype="Node" CircId="Node-11" mainComp="false" Pos="-260,-36" />
+<item itemtype="MCU" CircId="mega16-3" mainComp="false" Show_id="true" Show_Val="false" Pos="-192,-108" rotation="0" hflip="1" vflip="1" label="mega16-3" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="1 MHz" Program="pwm.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Wdt_enabled="false" varList="OCR0,,,,,,,,,,,PORTB" MainMcu="true" SerialMon="-1" />
 
 <item itemtype="Node" CircId="Node-19" mainComp="false" Pos="-260,60" />
 
-<item itemtype="Node" CircId="Node-24" mainComp="false" Pos="-228,16" />
+<item itemtype="Node" CircId="Node-11" mainComp="false" Pos="-260,-36" />
 
-<item itemtype="Node" CircId="Node-25" mainComp="false" Pos="-220,-76" />
+<item itemtype="Node" CircId="Node-39" mainComp="false" Pos="-228,16" />
+
+<item itemtype="Node" CircId="Node-40" mainComp="false" Pos="-228,-76" />
 
 <item itemtype="Connector" uid="Connector-1" startpinid="Ground-6-Gnd" endpinid="Battery-5-rPin" pointList="-340,-84,-340,-96" />
-
-<item itemtype="Connector" uid="Connector-2" startpinid="Resistor-7-rPin" endpinid="Battery-5-lPin" pointList="-260,-88,-260,-140,-340,-140,-340,-128" />
-
-<item itemtype="Connector" uid="Connector-12" startpinid="Push-8-pinP0" endpinid="Node-11-0" pointList="-260,-20,-260,-36" />
-
-<item itemtype="Connector" uid="Connector-13" startpinid="Node-11-2" endpinid="Resistor-7-lPin" pointList="-260,-36,-260,-56" />
 
 <item itemtype="Connector" uid="Connector-26" startpinid="Capacitor-18-rPin" endpinid="Node-19-1" pointList="-228,60,-260,60" />
 
 <item itemtype="Connector" uid="Connector-27" startpinid="Push-8-switch0pinN" endpinid="Node-19-0" pointList="-260,12,-260,60" />
 
-<item itemtype="Connector" uid="Connector-28" startpinid="Node-19-2" endpinid="Ground-4-Gnd" pointList="-260,60,-260,76" />
-
-<item itemtype="Connector" uid="Connector-38" startpinid="Node-24-1" endpinid="Oscope-13-Pin3" pointList="-228,16,-204,16,-204,96,-64,96,-64,12,-44,12" />
-
-<item itemtype="Connector" uid="Connector-39" startpinid="Resistor-20-lPin" endpinid="Node-24-0" pointList="-228,8,-228,16" />
-
-<item itemtype="Connector" uid="Connector-40" startpinid="Node-24-2" endpinid="Capacitor-18-lPin" pointList="-228,16,-228,28" />
-
 <item itemtype="Connector" uid="Connector-41" startpinid="Node-11-1" endpinid="mega16-3-RST" pointList="-260,-36,-200,-36" />
 
-<item itemtype="Connector" uid="Connector-42" startpinid="Resistor-20-rPin" endpinid="Node-25-1" pointList="-228,-24,-228,-76,-220,-76" />
+<item itemtype="Connector" uid="Connector-13" startpinid="Node-11-2" endpinid="Resistor-7-lPin" pointList="-260,-36,-260,-56" />
 
-<item itemtype="Connector" uid="Connector-43" startpinid="mega16-3-PORTB3" endpinid="Node-25-0" pointList="-200,-76,-220,-76" />
+<item itemtype="Connector" uid="Connector-12" startpinid="Push-8-pinP0" endpinid="Node-11-0" pointList="-260,-20,-260,-36" />
 
-<item itemtype="Connector" uid="Connector-44" startpinid="Node-25-2" endpinid="Oscope-13-Pin0" pointList="-220,-76,-220,-136,-44,-136,-44,-84" />
+<item itemtype="Connector" uid="Connector-73" startpinid="Resistor-7-rPin" endpinid="Battery-5-lPin" pointList="-260,-88,-260,-140,-340,-140,-340,-128" />
+
+<item itemtype="Connector" uid="Connector-75" startpinid="Node-19-2" endpinid="Ground-4-Gnd" pointList="-260,60,-260,76" />
+
+<item itemtype="Connector" uid="Connector-93" startpinid="Node-39-1" endpinid="Oscope-13-Pin3" pointList="-228,16,-208,16,-208,92,-80,92,-80,12,-48,12" />
+
+<item itemtype="Connector" uid="Connector-94" startpinid="Resistor-20-lPin" endpinid="Node-39-0" pointList="-228,8,-228,16" />
+
+<item itemtype="Connector" uid="Connector-95" startpinid="Node-39-2" endpinid="Capacitor-18-lPin" pointList="-228,16,-228,28" />
+
+<item itemtype="Connector" uid="Connector-96" startpinid="Node-40-1" endpinid="Oscope-13-Pin0" pointList="-228,-76,-228,-128,-80,-128,-80,-84,-48,-84" />
+
+<item itemtype="Connector" uid="Connector-97" startpinid="mega16-3-PORTB3" endpinid="Node-40-0" pointList="-200,-76,-228,-76" />
+
+<item itemtype="Connector" uid="Connector-98" startpinid="Node-40-2" endpinid="Resistor-20-rPin" pointList="-228,-76,-228,-24" />
 
 </circuit>
