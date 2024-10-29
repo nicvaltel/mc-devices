@@ -1,17 +1,53 @@
 <circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
 
-<item itemtype="MCU" CircId="mega16-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-164,-172" rotation="0" hflip="1" vflip="1" label="mega16-2" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="1 Hz" Program="7segments.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Wdt_enabled="false" MainMcu="true" SerialMon="-1" />
+<item itemtype="MCU" CircId="mega16-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-164,-172" rotation="0" hflip="1" vflip="1" label="mega16-2" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="100 Hz" Program="7segments.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Wdt_enabled="false" varList="R30,R31,,R26,R27,,,,PORTB,PINB,,,R16,R20" MainMcu="true" SerialMon="-1" />
 
-<item itemtype="Ground" CircId="Ground-3" mainComp="false" Show_id="false" Show_Val="false" Pos="-236,-132" rotation="0" hflip="1" vflip="1" label="Ground-3" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+<item itemtype="Ground" CircId="Ground-3" mainComp="false" Show_id="false" Show_Val="false" Pos="-220,20" rotation="0" hflip="1" vflip="1" label="Ground-3" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
-<item itemtype="Resistor" CircId="Resistor-4" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-204,-128" rotation="270" hflip="1" vflip="1" label="Resistor-4" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="10 kΩ" />
+<item itemtype="Resistor" CircId="Resistor-4" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-220,-76" rotation="450" hflip="1" vflip="1" label="Resistor-4" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="10 kΩ" />
 
-<item itemtype="Battery" CircId="Battery-5" mainComp="false" Show_id="false" Show_Val="false" Pos="-236,-180" rotation="90" hflip="1" vflip="1" label="Battery-5" idLabPos="-18,-22" labelrot="0" valLabPos="-10,10" valLabRot="0" Voltage="5 V" Resistance="1 mΩ" />
+<item itemtype="Battery" CircId="Battery-5" mainComp="false" Show_id="false" Show_Val="false" Pos="-220,-28" rotation="90" hflip="1" vflip="1" label="Battery-5" idLabPos="-18,-22" labelrot="0" valLabPos="-10,10" valLabRot="0" Voltage="5 V" Resistance="1 mΩ" />
 
-<item itemtype="Connector" uid="Connector-1" startpinid="Resistor-4-lPin" endpinid="mega16-2-RST" pointList="-204,-112,-204,-100,-172,-100" />
+<item itemtype="Push" CircId="Push-8" mainComp="false" Show_id="false" Show_Val="false" Pos="-252,-76" rotation="90" hflip="1" vflip="1" label="Push-8" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
 
-<item itemtype="Connector" uid="Connector-2" startpinid="Battery-5-lPin" endpinid="Resistor-4-rPin" pointList="-236,-196,-204,-196,-204,-144" />
+<item itemtype="Seven Segment" CircId="Seven Segment-11" mainComp="false" Show_id="false" Show_Val="false" Pos="-244,-204" rotation="0" hflip="1" vflip="1" label="Seven Segment-11" idLabPos="20,-44" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Yellow" NumDisplays="1" Vertical_Pins="false" CommonCathode="true" Threshold="2.4 V" MaxCurrent="20 mA" Resistance="1 Ω" />
 
-<item itemtype="Connector" uid="Connector-3" startpinid="Ground-3-Gnd" endpinid="Battery-5-rPin" pointList="-236,-148,-236,-164" />
+<item itemtype="Node" CircId="Node-9" mainComp="false" Pos="-220,-100" />
+
+<item itemtype="Node" CircId="Node-10" mainComp="false" Pos="-220,4" />
+
+<item itemtype="Node" CircId="Node-16" mainComp="false" Pos="-232,4" />
+
+<item itemtype="Connector" uid="Connector-2" startpinid="Battery-5-lPin" endpinid="Resistor-4-rPin" pointList="-220,-44,-220,-60" />
+
+<item itemtype="Connector" uid="Connector-15" startpinid="Push-8-pinP0" endpinid="Node-9-1" pointList="-252,-92,-252,-100,-220,-100" />
+
+<item itemtype="Connector" uid="Connector-16" startpinid="Resistor-4-lPin" endpinid="Node-9-0" pointList="-220,-92,-220,-100" />
+
+<item itemtype="Connector" uid="Connector-17" startpinid="Node-9-2" endpinid="mega16-2-RST" pointList="-220,-100,-172,-100" />
+
+<item itemtype="Connector" uid="Connector-19" startpinid="Ground-3-Gnd" endpinid="Node-10-0" pointList="-220,4,-220,4" />
+
+<item itemtype="Connector" uid="Connector-20" startpinid="Node-10-2" endpinid="Battery-5-rPin" pointList="-220,4,-220,-12" />
+
+<item itemtype="Connector" uid="Connector-52" startpinid="Seven Segment-11-pin_a" endpinid="mega16-2-PORTB6" pointList="-268,-228,-388,-228,-388,-116,-172,-116" />
+
+<item itemtype="Connector" uid="Connector-53" startpinid="Seven Segment-11-pin_b" endpinid="mega16-2-PORTB5" pointList="-268,-220,-380,-220,-380,-124,-172,-124" />
+
+<item itemtype="Connector" uid="Connector-54" startpinid="Seven Segment-11-pin_c" endpinid="mega16-2-PORTB4" pointList="-268,-212,-372,-212,-372,-132,-172,-132" />
+
+<item itemtype="Connector" uid="Connector-55" startpinid="mega16-2-PORTB3" endpinid="Seven Segment-11-pin_d" pointList="-172,-140,-364,-140,-364,-204,-268,-204" />
+
+<item itemtype="Connector" uid="Connector-56" startpinid="mega16-2-PORTB2" endpinid="Seven Segment-11-pin_e" pointList="-172,-148,-356,-148,-356,-196,-268,-196" />
+
+<item itemtype="Connector" uid="Connector-57" startpinid="Seven Segment-11-pin_f" endpinid="mega16-2-PORTB1" pointList="-268,-188,-348,-188,-348,-156,-172,-156" />
+
+<item itemtype="Connector" uid="Connector-58" startpinid="mega16-2-PORTB0" endpinid="Seven Segment-11-pin_g" pointList="-172,-164,-340,-164,-340,-180,-268,-180" />
+
+<item itemtype="Connector" uid="Connector-60" startpinid="Seven Segment-11-pin_commona" endpinid="Node-16-1" pointList="-236,-172,-236,4,-232,4" />
+
+<item itemtype="Connector" uid="Connector-61" startpinid="Push-8-switch0pinN" endpinid="Node-16-0" pointList="-252,-60,-252,4,-232,4" />
+
+<item itemtype="Connector" uid="Connector-62" startpinid="Node-16-2" endpinid="Node-10-1" pointList="-232,4,-220,4" />
 
 </circuit>

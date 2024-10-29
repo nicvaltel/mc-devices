@@ -26,8 +26,6 @@
 
 <item itemtype="Voltimeter" CircId="Voltimeter-20" mainComp="false" Show_id="false" Show_Val="false" Pos="-36,-176" rotation="0" hflip="1" vflip="1" label="Voltimeter-20" idLabPos="-24,-40" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
-<item itemtype="Seven Segment" CircId="Seven Segment-25" mainComp="false" Show_id="false" Show_Val="false" Pos="-332,-92" rotation="0" hflip="1" vflip="1" label="Seven Segment-25" idLabPos="20,-44" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Yellow" NumDisplays="1" Vertical_Pins="false" CommonCathode="true" Threshold="2.4 V" MaxCurrent="20 mA" Resistance="1 Ω" />
-
 <item itemtype="Node" CircId="Node-9" mainComp="false" Pos="-100,-28" />
 
 <item itemtype="Node" CircId="Node-11" mainComp="false" Pos="-28,-28" />

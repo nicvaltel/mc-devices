@@ -8,15 +8,10 @@
 
 ;---- Data Segment
 .dseg
-led_seg_array: .db 1,2,3,4
-;; led_seg_array: .byte 8 ;Reserve 8 bytes for array
-;;     ; .byte 0b1111110, 0b0110000, 0b1101101, 0b1111001
-
-
+led_seg_array: .byte 8 ;Reserve 8 bytes for array
 
 ;---- Code Segment
 .cseg
-
 
 
 .org 0x000
@@ -25,48 +20,80 @@ led_seg_array: .db 1,2,3,4
 .org OVF0addr ;; OVF0addr	= 0x0012	; Timer/Counter0 Overflow
     rjmp TIM0_OVF_ISR
 
-.org ADCCaddr ; = 0x001c ; ADC Conversion Complete
-    rjmp ADC_ISR
-
 
 .org 0x02A
 RESET:
-    ; ldi r16, 0b11111100
-    ; sts led_seg_array, r16
+    ; set portb as output
+    ldi r16, 0xff
+    out ddrb, r16
 
-    ldi r30, low(led_seg_array)
-    ldi r31, high(led_seg_array)
+    ; fill led_seg_array with data
+    ldi r26, low(led_seg_array)
+    ldi r27, high(led_seg_array)
 
-    ldi r16, 0b11111100
-    st Z, r16
-    
-    ldi r16, 0b01100000
-    inc r30
-    st Z, r16
-
-    ldi r16, 0b11011010
-    inc r30
-    st Z, r16
-
-    ldi r16, 0b11110010
-    inc r30
-    st Z, r16
+    ldi r16, 0b01111110 ;0
+    st X+, r16
+    ldi r16, 0b00110000 ;1
+    st X+, r16
+    ldi r16, 0b01101101 ;2
+    st X+, r16
+    ldi r16, 0b01111001 ;3
+    st X+, r16
+    ldi r16, 0b00110011 ;4
+    st X+, r16
+    ldi r16, 0b01011011 ;5
+    st X+, r16
+    ldi r16, 0b01011111 ;6
+    st X+, r16
+    ldi r16, 0b01110000 ;7
+    st X+, r16
+    ldi r16, 0b01111111 ;8
+    st X+, r16
+    ldi r16, 0b01111011 ;9
+    st X+, r16
     
 
     
 MAIN:
-    rjmp MAIN
+    ldi r21, 10 ; end of digits, if r20=r21 then LOOP_FROM_0
 
-; Interrupt Service Routine for ADC Conversion Complete
-ADC_ISR:
+    LOOP_FROM_0:
+    ldi r20, 0
+
+    LOOP:
+    rcall DISPLAY_NUMBER
+    
+    inc r20
+
+    cpse r20, r21
+    rjmp LOOP
+    
+    rjmp LOOP_FROM_0
+
+
+
+DISPLAY_NUMBER:
+    ; input r20
+    ; output portb
+
+    ; read led_seg_array[r20]
+    ldi r26, low(led_seg_array)
+    ldi r27, high(led_seg_array)
+
+    add r26, r20 ; add array index
+
+    ld r16, X
+
+    out portb, r16
+
+    ret
+
+
+
 
 ; Interrupt Service Routine for Timer0 overflow
 TIM0_OVF_ISR:
-
     reti
-
-; led_seg_array: .db 1, 2, 3, 4, 5, 6, 7, 8, 9
-
 
 ;---- EEPROM Segment
 .eseg
