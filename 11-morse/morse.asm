@@ -125,6 +125,7 @@ LOAD_LITERA:
 
     push r16
     push r17
+    push r19
     push r20
     push r21
     in r16, SREG
@@ -144,42 +145,59 @@ LOAD_LITERA:
     inc r26
     ld r21, X ; load litera code
 
-    ; set r26:27 to start of CURRENT_LITERA_CODE array
-    ldi r27, high(CURRENT_LITERA_CODE) ; X = R27:R26
-    ldi r26, low(CURRENT_LITERA_CODE)
+    clr r19 ; clear counter of push operations
 
     LOAD_LITERA_LOOP:
     ; if litera length = 0 jump to finish
     clr r16
     cp r20, r16
     breq FINISH_LOAD_LITERA
+
+    clr r17
+    push r17 ; save 1 pause
+    inc r19
     
     ; save '.' 
     ldi r17, 1
-    st X, r17 ; save to CURRENT_LITERA_CODE
-    inc r26 ; increment CURRENT_LITERA_CODE pointer
+    push r17 ; save to CURRENT_LITERA_CODE to stack (for invert bits)
+    inc r19
     
     SBRS r21, 0; Skip if Bit in Register Cleared => if r21[0] = 0 then jump and save '.' else not jump save '...' = '_'
     rjmp LOAD_LITERA_LOOP_END
 
     ; save aditional '..' to make '...' = '_'
-    st X, r17
-    inc r26
-    st X, r17
-    inc r26
+    push r17
+    inc r19
+    push r17
+    inc r19
 
 
     LOAD_LITERA_LOOP_END:
-    clr r17
-    st X, r17 ; save 1 pause
-    inc r26
-    
-
     dec r20 ; loop counter
     lsr r21 ; shift litera code to get next bit
     rjmp LOAD_LITERA_LOOP
 
+
     FINISH_LOAD_LITERA:
+
+    ; set r26:27 to start of CURRENT_LITERA_CODE array
+    ldi r27, high(CURRENT_LITERA_CODE) ; X = R27:R26
+    ldi r26, low(CURRENT_LITERA_CODE)
+
+    ; if push counter = 0, goto finish
+    clr r16
+    cp r19, r16
+    breq FINISH_LOAD_LITERA_POP_LOOP
+
+    LOAD_LITERA_POP_LOOP:
+    pop r17
+    st X, r17
+    inc r26
+    dec r19
+    brne LOAD_LITERA_POP_LOOP ; if r19 (lenght of litera) /=0 then loop again
+
+    FINISH_LOAD_LITERA_POP_LOOP:
+
     ser r17
     st X, r17 ; set to end of CURRENT_LITERA_CODE value 0xff
 
@@ -187,6 +205,7 @@ LOAD_LITERA:
     out SREG, r16
     pop r21
     pop r20
+    pop r19
     pop r17
     pop r16
     reti
