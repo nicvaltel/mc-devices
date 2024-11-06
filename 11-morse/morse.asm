@@ -5,6 +5,7 @@
 .equ WAVE_COUNTER = 0x102
 ; .equ SOUND_SIGNAL = 0x103
 .equ CURRENT_LITERA_CODE_OFFSET = 0x103
+.equ MESSAGE_OFFSET = 0x104
 .equ CURRENT_LITERA_CODE = 0x110
 .equ ALPHABET = 0x130
 .equ MESSAGE = 0x170
@@ -34,12 +35,15 @@ RESET:
     ldi r27, low(CURRENT_LITERA_CODE_OFFSET)
     st X, r16
 
-    ; load litera 6
+    ; set MESSAGE_OFFSET = 0
+    clr r16
+    ldi r27, high(MESSAGE_OFFSET)
+    ldi r27, low(MESSAGE_OFFSET)
+    st X, r16
+
+    ; load first litera of message
     ldi r27, high(MESSAGE)
     ldi r26, low(MESSAGE)
-    inc r26
-    inc r26
-    inc r26
     rcall LOAD_LITERA
 
     ; ; set SOUND_SIGNAL_FLAG = 1
@@ -173,6 +177,43 @@ TIM0_OVF_ISR:
     ldi r26, low(CURRENT_LITERA_CODE_OFFSET)
     st X, r16
 
+    ; increment MESSAGE_OFFSET
+    ldi r27, high(MESSAGE_OFFSET)
+    ldi r26, low(MESSAGE_OFFSET)
+    ld r16, X
+    inc r16
+    st X, r16
+
+    
+
+    ; load next message litera
+    ldi r27, high(MESSAGE)
+    ldi r26, low(MESSAGE)
+    add r26, r16 ; add MESSAGE_OFFSET
+    mov r1, r27 ; temp for testing
+    mov r2, r26 ; temp for testing
+
+    ; check for end of message = 0xff
+    ld r16, X
+    cpi r16, 0xff
+    breq TIM0_OVF_END_OF_MESSAGE
+
+    rcall LOAD_LITERA
+    rjmp TIM0_OVF_ISR_FINISH
+
+    TIM0_OVF_END_OF_MESSAGE:
+    ldi r27, high(MESSAGE_OFFSET)
+    ldi r26, low(MESSAGE_OFFSET)
+    mov r1, r27 ; temp for testing
+    mov r2, r26 ; temp for testing
+    clr r16
+    st X, r16 ; start all the message once again
+
+    ; load next message litera
+    ldi r27, high(MESSAGE)
+    ldi r26, low(MESSAGE)
+    rcall LOAD_LITERA
+
 
     TIM0_OVF_ISR_FINISH:
     pop r16
@@ -269,7 +310,7 @@ LOAD_LITERA:
     clr r17
     st X, r17 ; add second pause after end of litera (third pause will be 0xff)
     inc r26
-    
+
     ser r17
     st X, r17 ; set to end of CURRENT_LITERA_CODE value 0xff
 
@@ -280,7 +321,7 @@ LOAD_LITERA:
     pop r19
     pop r17
     pop r16
-    reti
+    ret
 
 
 
@@ -331,7 +372,7 @@ INIT_MESSAGE:
     ldi r16, 0xff
     st X, r16
 
-    reti
+    ret
 
 
 INIT_ALPHABET:
@@ -418,10 +459,7 @@ INIT_ALPHABET:
     st X,r16
     inc r26
 
-    reti
-
-
-
+    ret
 
 
 
